@@ -6,18 +6,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Setor {
+public class SetorFuncionario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nome;
 	
-	public Setor() {
+	public SetorFuncionario() {
 		super();
 	}
 
-	public Setor(int id, String nome) {
+	public SetorFuncionario(int id, String nome) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -55,7 +55,7 @@ public class Setor {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Setor other = (Setor) obj;
+		SetorFuncionario other = (SetorFuncionario) obj;
 		if (id != other.id)
 			return false;
 		return true;

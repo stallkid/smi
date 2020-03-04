@@ -22,13 +22,13 @@ public class Funcionario {
 	
 	@ManyToOne
 	@JoinColumn(name = "setor_id")
-	private Setor setor;
+	private SetorFuncionario setor;
 
 	public Funcionario() {
 		super();
 	}
 
-	public Funcionario(int id, String nome, String sobrenome, Usuario usuario, Setor setor) {
+	public Funcionario(int id, String nome, String sobrenome, Usuario usuario, SetorFuncionario setor) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -61,11 +61,11 @@ public class Funcionario {
 		this.sobrenome = sobrenome;
 	}
 
-	public Setor getSetor() {
+	public SetorFuncionario getSetor() {
 		return setor;
 	}
 
-	public void setSetor(Setor setor) {
+	public void setSetor(SetorFuncionario setor) {
 		this.setor = setor;
 	}
 

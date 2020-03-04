@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.ds.smi.model.enums.EstoqueStatus;
+import com.sun.istack.Nullable;
 
 @Entity
 public class Estoque implements Serializable {
@@ -29,15 +30,21 @@ public class Estoque implements Serializable {
 	
 	private int status;
 	
+	@Nullable
+	@ManyToOne
+	@JoinColumn(name = "setor_id")
+	private SetorProduto setor;
+	
 	public Estoque() {
 		super();
 	}
 	
-	public Estoque(int id, Produto produto, Lote lote, EstoqueStatus status) {
+	public Estoque(int id, Produto produto, Lote lote, EstoqueStatus status, SetorProduto setor) {
 		this.id = id;
 		this.produto = produto;
 		this.lote = lote;
 		this.status = (status==null) ? null : status.getCod();
+		this.setor = setor;
 	}
 
 	public int getId() {
@@ -70,6 +77,50 @@ public class Estoque implements Serializable {
 
 	public void setstatus(EstoqueStatus status) {
 		this.status = status.getCod();
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public SetorProduto getSetor() {
+		return setor;
+	}
+
+	public void setSetor(SetorProduto setor) {
+		this.setor = setor;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Estoque other = (Estoque) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Estoque [id=" + id + ", produto=" + produto + ", lote=" + lote + ", status=" + status + ", setor="
+				+ setor + "]";
 	}
 
 }

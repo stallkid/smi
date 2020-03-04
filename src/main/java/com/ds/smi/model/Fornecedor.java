@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Fornecedor {
 	
@@ -19,6 +21,7 @@ public class Fornecedor {
 	private String nome;
 	private String cnpj;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "fornecedores", cascade = CascadeType.MERGE)
 	List<Produto> produtos = new ArrayList<>();
 
