@@ -17,7 +17,7 @@ services:
     restart: unless-stopped
 # APP*****************************************
   smi-backend:
-    image: ccunip/smi-docker:latest
+    image: renanlb/ccunip_smi_docker:latest
     network_mode: bridge
     container_name: smi-docker
     expose:
