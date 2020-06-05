@@ -1,9 +1,18 @@
 package com.ds.smi.model;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import com.ds.smi.model.enums.Perfil;
 
 @Entity
 public class Usuario {
@@ -14,6 +23,10 @@ public class Usuario {
 	private String email;
 	private String senha;
 	
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name="PERFIS")
+	private Set<Integer> perfis = new HashSet<>();
+	
 	public Usuario() {
 		super();
 	}
@@ -23,6 +36,7 @@ public class Usuario {
 		this.id = id;
 		this.email = email;
 		this.senha = senha;
+		addPerfil(Perfil.FUNCIONARIO);
 	}
 
 	public int getId() {
@@ -47,6 +61,14 @@ public class Usuario {
 
 	public void setsenha(String senha) {
 		this.senha = senha;
+	}
+	
+	public Set<Perfil> getPerfis() {
+		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
+	}
+	
+	public void addPerfil(Perfil perfil) {
+		perfis.add(perfil.getCod());
 	}
 
 	@Override

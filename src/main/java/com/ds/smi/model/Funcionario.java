@@ -12,7 +12,7 @@ public class Funcionario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	private String nome;
 	private String sobrenome;
 	
@@ -28,7 +28,7 @@ public class Funcionario {
 		super();
 	}
 
-	public Funcionario(int id, String nome, String sobrenome, Usuario usuario, SetorFuncionario setor) {
+	public Funcionario(Integer id, String nome, String sobrenome, Usuario usuario, SetorFuncionario setor) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -41,7 +41,7 @@ public class Funcionario {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
