@@ -10,14 +10,14 @@ public class SetorFuncionario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	private String nome;
 	
 	public SetorFuncionario() {
 		super();
 	}
 
-	public SetorFuncionario(int id, String nome) {
+	public SetorFuncionario(Integer id, String nome) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -27,7 +27,7 @@ public class SetorFuncionario {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

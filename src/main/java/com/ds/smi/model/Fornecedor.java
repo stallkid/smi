@@ -17,7 +17,7 @@ public class Fornecedor {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	private String nome;
 	private String cnpj;
 	
@@ -29,7 +29,7 @@ public class Fornecedor {
 		super();
 	}
 
-	public Fornecedor(int id, String nome, String cnpj) {
+	public Fornecedor(Integer id, String nome, String cnpj) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -40,7 +40,7 @@ public class Fornecedor {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

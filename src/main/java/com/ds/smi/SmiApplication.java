@@ -23,7 +23,7 @@ import com.ds.smi.repositories.FornecedorRepository;
 import com.ds.smi.repositories.FuncionarioRepository;
 import com.ds.smi.repositories.LoteRepository;
 import com.ds.smi.repositories.ProdutoRepository;
-import com.ds.smi.repositories.SetorRepository;
+import com.ds.smi.repositories.SetorFuncionarioRepository;
 import com.ds.smi.repositories.UsuarioRepository;
 
 @SpringBootApplication
@@ -48,7 +48,7 @@ public class SmiApplication implements CommandLineRunner {
 	private UsuarioRepository userRepo;
 	
 	@Autowired
-	private SetorRepository setorRepo;
+	private SetorFuncionarioRepository setorRepo;
 	
 	@Autowired
 	private FuncionarioRepository funcRepo;
@@ -102,7 +102,7 @@ public class SmiApplication implements CommandLineRunner {
 		
 		Funcionario func1 = new Funcionario(1, "Renan", "Luis Bianchini", user1, setor1);
 		Funcionario func2 = new Funcionario(2, "Manu", "Vegas", user3, setor2);
-		Funcionario func3 = new Funcionario(3, "Paulo", "Rivera", user2, setor4);
+		Funcionario func3 = new Funcionario(3, "Luis", "Vinhali", user2, setor4);
 		
 		funcRepo.saveAll(Arrays.asList(func1, func2, func3));
 		

@@ -1,5 +1,6 @@
 package com.ds.smi.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,15 +13,15 @@ public class Funcionario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	private String nome;
 	private String sobrenome;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "setor_id")
 	private SetorFuncionario setor;
 
@@ -28,7 +29,7 @@ public class Funcionario {
 		super();
 	}
 
-	public Funcionario(int id, String nome, String sobrenome, Usuario usuario, SetorFuncionario setor) {
+	public Funcionario(Integer id, String nome, String sobrenome, Usuario usuario, SetorFuncionario setor) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -37,11 +38,11 @@ public class Funcionario {
 		this.setor = setor;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
