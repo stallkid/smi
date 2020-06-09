@@ -17,27 +17,27 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.ds.smi.dto.request.CategoriaRequest;
-import com.ds.smi.dto.response.CategoriaResponse;
-import com.ds.smi.model.Categoria;
-import com.ds.smi.services.CategoriaService;
+import com.ds.smi.dto.request.FuncionarioRequest;
+import com.ds.smi.dto.response.FuncionarioResponse;
+import com.ds.smi.model.Funcionario;
+import com.ds.smi.services.FuncionarioService;
 
 @RestController
-@RequestMapping(value="/categorias")
-public class CategoriaController {
+@RequestMapping(value="funcionario")
+public class FuncionarioController {
 	
 	@Autowired
-	private CategoriaService service;
+	private FuncionarioService service;
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Categoria> find(@PathVariable Integer id) {
-		Categoria obj = service.find(id);
+	public ResponseEntity<Funcionario> find(@PathVariable Integer id) {
+		Funcionario obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody CategoriaRequest objDto) {
-		Categoria obj = service.fromDTO(objDto);
+	public ResponseEntity<Void> insert(@Valid @RequestBody FuncionarioRequest objDto) {
+		Funcionario obj = service.fromDTO(objDto);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 			.path("/{id}").buildAndExpand(obj.getId()).toUri();
@@ -45,8 +45,8 @@ public class CategoriaController {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Void> update(@Valid @RequestBody CategoriaRequest objDto, @PathVariable Integer id) {
-		Categoria obj = service.fromDTO(objDto);
+	public ResponseEntity<Void> update(@Valid @RequestBody FuncionarioRequest objDto, @PathVariable Integer id) {
+		Funcionario obj = service.fromDTO(objDto);
 		obj.setId(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
@@ -59,20 +59,20 @@ public class CategoriaController {
 	}
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public ResponseEntity<List<CategoriaResponse>> findAll() {
-		List<Categoria> list = service.findAll();
-		List<CategoriaResponse> listDto = list.stream().map(obj -> new CategoriaResponse(obj)).collect(Collectors.toList());  
+	public ResponseEntity<List<FuncionarioResponse>> findAll() {
+		List<Funcionario> list = service.findAll();
+		List<FuncionarioResponse> listDto = list.stream().map(obj -> new FuncionarioResponse(obj)).collect(Collectors.toList());  
 		return ResponseEntity.ok().body(listDto);
 	}
 	
 	@RequestMapping(value="/page", method=RequestMethod.GET)
-	public ResponseEntity<Page<CategoriaResponse>> findPage(
+	public ResponseEntity<Page<FuncionarioResponse>> findPage(
 			@RequestParam(value="page", defaultValue="0") Integer page, 
 			@RequestParam(value="linesPerPage", defaultValue="24") Integer linesPerPage, 
 			@RequestParam(value="orderBy", defaultValue="nome") String orderBy, 
 			@RequestParam(value="direction", defaultValue="ASC") String direction) {
-		Page<Categoria> list = service.findPage(page, linesPerPage, orderBy, direction);
-		Page<CategoriaResponse> listDto = list.map(obj -> new CategoriaResponse(obj));  
+		Page<Funcionario> list = service.findPage(page, linesPerPage, orderBy, direction);
+		Page<FuncionarioResponse> listDto = list.map(obj -> new FuncionarioResponse(obj));  
 		return ResponseEntity.ok().body(listDto);
 	}
 

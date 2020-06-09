@@ -10,7 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.ds.smi.dto.CategoriaDTO;
+import com.ds.smi.dto.request.CategoriaRequest;
 import com.ds.smi.model.Categoria;
 import com.ds.smi.repositories.CategoriaRepository;
 import com.ds.smi.services.exceptions.DataIntegrityException;
@@ -58,7 +58,7 @@ public class CategoriaService {
 		return repo.findAll(pageRequest);
 	}
 	
-	public Categoria fromDTO(CategoriaDTO objDto) {
+	public Categoria fromDTO(CategoriaRequest objDto) {
 		return new Categoria(objDto.getId(), objDto.getNome());
 	}
 	

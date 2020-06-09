@@ -23,7 +23,7 @@ import com.ds.smi.repositories.FornecedorRepository;
 import com.ds.smi.repositories.FuncionarioRepository;
 import com.ds.smi.repositories.LoteRepository;
 import com.ds.smi.repositories.ProdutoRepository;
-import com.ds.smi.repositories.SetorRepository;
+import com.ds.smi.repositories.SetorFuncionarioRepository;
 import com.ds.smi.repositories.UsuarioRepository;
 
 @SpringBootApplication
@@ -48,7 +48,7 @@ public class SmiApplication implements CommandLineRunner {
 	private UsuarioRepository userRepo;
 	
 	@Autowired
-	private SetorRepository setorRepo;
+	private SetorFuncionarioRepository setorRepo;
 	
 	@Autowired
 	private FuncionarioRepository funcRepo;

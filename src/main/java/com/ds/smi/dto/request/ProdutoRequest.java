@@ -1,35 +1,33 @@
-package com.ds.smi.dto;
+package com.ds.smi.dto.request;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ds.smi.model.Categoria;
-import com.ds.smi.model.Fornecedor;
-import com.ds.smi.model.Produto;
-
-public class ProdutoDTO implements Serializable {
+public class ProdutoRequest implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
 	private String nome;
 	private String marca;
 	private String descricao;
-	private Categoria categoria;
+	private Integer categoria;
 	private double preco;
-	List<Fornecedor> fornecedores = new ArrayList<>();
+	List<Integer> fornecedores = new ArrayList<>();
 	
-	public ProdutoDTO() {
+	public ProdutoRequest() {
 	}
 
-	public ProdutoDTO(Produto obj) {
-		this.id = obj.getId();
-		this.nome = obj.getNome();
-		this.marca = obj.getMarca();
-		this.descricao = obj.getDescricao();
-		this.categoria = obj.getCategoria();
-		this.preco = obj.getPreco();
-		this.fornecedores = obj.getFornecedores();
+	public ProdutoRequest(Integer id, String nome, String marca, String descricao, Integer categoria, double preco,
+			List<Integer> fornecedores) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.marca = marca;
+		this.descricao = descricao;
+		this.categoria = categoria;
+		this.preco = preco;
+		this.fornecedores = fornecedores;
 	}
 
 	public Integer getId() {
@@ -64,11 +62,11 @@ public class ProdutoDTO implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public Categoria getCategoria() {
+	public Integer getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(Categoria categoria) {
+	public void setCategoria(Integer categoria) {
 		this.categoria = categoria;
 	}
 
@@ -80,11 +78,11 @@ public class ProdutoDTO implements Serializable {
 		this.preco = preco;
 	}
 
-	public List<Fornecedor> getFornecedores() {
+	public List<Integer> getFornecedores() {
 		return fornecedores;
 	}
 
-	public void setFornecedores(List<Fornecedor> fornecedores) {
+	public void setFornecedores(List<Integer> fornecedores) {
 		this.fornecedores = fornecedores;
 	}
 

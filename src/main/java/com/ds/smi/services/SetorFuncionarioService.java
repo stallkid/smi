@@ -10,66 +10,60 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.ds.smi.dto.request.ProdutoRequest;
-import com.ds.smi.model.Categoria;
+import com.ds.smi.dto.request.SetorFuncionarioRequest;
 import com.ds.smi.model.Produto;
-import com.ds.smi.repositories.CategoriaRepository;
-import com.ds.smi.repositories.ProdutoRepository;
+import com.ds.smi.model.SetorFuncionario;
+import com.ds.smi.repositories.SetorFuncionarioRepository;
 import com.ds.smi.services.exceptions.DataIntegrityException;
 import com.ds.smi.services.exceptions.ObjectNotFoundException;
 
-
 @Service
-public class ProdutoService {
+public class SetorFuncionarioService {
 	
 	@Autowired
-	private ProdutoRepository prodRepo;
+	private SetorFuncionarioRepository setorFuncionarioRepo;
 	
-	@Autowired
-	private CategoriaRepository catRepo;
-
-	public Produto find(Integer id) {
-		Optional<Produto> obj = prodRepo.findById(id);
+	public SetorFuncionario find(Integer id) {
+		Optional<SetorFuncionario> obj = setorFuncionarioRepo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Produto.class.getName()));
 	}
 	
-	public Produto insert(Produto obj) {
+	public SetorFuncionario insert(SetorFuncionario obj) {
 		obj.setId(null);
-		return prodRepo.save(obj);
+		return setorFuncionarioRepo.save(obj);
 	}
 	
-	public Produto update(Produto obj) {
-		Produto newObj = find(obj.getId());
+	public SetorFuncionario update(SetorFuncionario obj) {
+		SetorFuncionario newObj = find(obj.getId());
 		updateData(newObj, obj);
-		return prodRepo.save(newObj);
+		return setorFuncionarioRepo.save(newObj);
 	}
 	
 	public void delete(Integer id) {
 		find(id);
 		try {
-			prodRepo.deleteById(id);
+			setorFuncionarioRepo.deleteById(id);
 		}
 		catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException("Não é possível excluir uma Produto que possui produtos");
 		}
 	}
 	
-	public List<Produto> findAll() {
-		return prodRepo.findAll();
+	public List<SetorFuncionario> findAll() {
+		return setorFuncionarioRepo.findAll();
 	}
 	
-	public Page<Produto> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+	public Page<SetorFuncionario> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
-		return prodRepo.findAll(pageRequest);
+		return setorFuncionarioRepo.findAll(pageRequest);
 	}
 	
-	public Produto fromDTO(ProdutoRequest objDto) {
-		Categoria cat = this.catRepo.findCategoriaById(objDto.getCategoria()); 
-		return new Produto(objDto.getId(), objDto.getNome(), objDto.getMarca(), objDto.getDescricao(), cat, objDto.getPreco());
+	public SetorFuncionario fromDTO(SetorFuncionarioRequest objDto) {
+		return new SetorFuncionario(objDto.getId(), objDto.getNome());
 	}
 	
-	private void updateData(Produto newObj, Produto obj) {
+	private void updateData(SetorFuncionario newObj, SetorFuncionario obj) {
 		newObj.setNome(obj.getNome());
 	}
 
