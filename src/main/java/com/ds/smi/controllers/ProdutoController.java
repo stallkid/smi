@@ -31,9 +31,10 @@ public class ProdutoController {
 	private ProdutoService service;
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Produto> find(@PathVariable Integer id) {
+	public ResponseEntity<ProdutoResponse> find(@PathVariable Integer id) {
 		Produto obj = service.find(id);
-		return ResponseEntity.ok().body(obj);
+		ProdutoResponse response = new ProdutoResponse(obj);
+		return ResponseEntity.ok().body(response);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)

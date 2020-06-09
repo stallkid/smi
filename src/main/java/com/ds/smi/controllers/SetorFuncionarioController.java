@@ -30,9 +30,10 @@ public class SetorFuncionarioController {
 	private SetorFuncionarioService service;
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<SetorFuncionario> find(@PathVariable Integer id) {
+	public ResponseEntity<SetorFuncionarioResponse> find(@PathVariable Integer id) {
 		SetorFuncionario obj = service.find(id);
-		return ResponseEntity.ok().body(obj);
+		SetorFuncionarioResponse response = new SetorFuncionarioResponse(obj);
+		return ResponseEntity.ok().body(response);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)

@@ -30,9 +30,10 @@ public class FuncionarioController {
 	private FuncionarioService service;
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Funcionario> find(@PathVariable Integer id) {
+	public ResponseEntity<FuncionarioResponse> find(@PathVariable Integer id) {
 		Funcionario obj = service.find(id);
-		return ResponseEntity.ok().body(obj);
+		FuncionarioResponse response = new FuncionarioResponse(obj);
+		return ResponseEntity.ok().body(response);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
