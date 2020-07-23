@@ -59,32 +59,40 @@ public class SmiApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Categoria cat1 = new Categoria(1, "pereciveis");
-		Categoria cat2 = new Categoria(2, "enlatados");
-		Categoria cat3 = new Categoria(3, "panificados");
+		Categoria cat1 = new Categoria(null, "pereciveis");
+		Categoria cat2 = new Categoria(null, "enlatados");
+		Categoria cat3 = new Categoria(null, "panificados");
 		
-		Produto prod1 = new Produto(1, "produto 1", "marca 1", "descrição 1", cat1, 17.99);
-		Produto prod2 = new Produto(2, "produto 2", "marca 2", "descrição 2", cat2, 15.99);
+		Produto prod1 = new Produto(null, "produto 1", "marca 1", "descrição 1", 17.99);
+		Produto prod2 = new Produto(null, "produto 2", "marca 2", "descrição 2", 15.99);
 		
-		Fornecedor forn1 = new Fornecedor(1, "nome 1", "cnpj 1");
+//		Fornecedor forn1 = new Fornecedor(null, "nome 1", "cnpj 1");
 		
-		prod1.getFornecedores().addAll(Arrays.asList(forn1));
-		prod2.getFornecedores().addAll(Arrays.asList(forn1));
-		forn1.getProdutos().addAll(Arrays.asList(prod1, prod2));
+		cat1.getProdutos().addAll(Arrays.asList(prod1, prod2));
+		cat2.getProdutos().addAll(Arrays.asList(prod1));
+		cat3.getProdutos().addAll(Arrays.asList(prod2));
+		
+		prod1.getCategorias().addAll(Arrays.asList(cat1,cat2));
+		prod2.getCategorias().addAll(Arrays.asList(cat1,cat3));
+		
+//		forn1.getProdutos().addAll(Arrays.asList(prod1, prod2));
+		
+//		prod1.getFornecedores().addAll(Arrays.asList(forn1));
+//		prod2.getFornecedores().addAll(Arrays.asList(forn1));
 		
 		catRepo.saveAll(Arrays.asList(cat1, cat2, cat3));
 		prodRepo.saveAll(Arrays.asList(prod1, prod2));
-		fornRepo.saveAll(Arrays.asList(forn1));
+//		fornRepo.saveAll(Arrays.asList(forn1));
 		
 		Date date1 = new Date();
 		
-		Lote lote1 = new Lote(1, forn1, 19.99, date1, date1);
+//		Lote lote1 = new Lote(1, forn1, 19.99, date1, date1);
 		
-		loteRepo.save(lote1);
+//		loteRepo.save(lote1);
 		
-		Estoque estoque1 = new Estoque(1, prod1, lote1, EstoqueStatus.EM_ESTOQUE, null);
+//		Estoque estoque1 = new Estoque(1, prod1, lote1, EstoqueStatus.EM_ESTOQUE, null);
 		
-		estoqueRepo.save(estoque1);
+//		estoqueRepo.save(estoque1);
 		
 		Usuario user1 = new Usuario(1, "renan@test.com", "1234");
 		Usuario user2 = new Usuario(2, "paulo@test.com", "2341");
