@@ -3,14 +3,11 @@ package com.ds.smi.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Fornecedor {
@@ -21,26 +18,25 @@ public class Fornecedor {
 	private String nome;
 	private String cnpj;
 	
-	@JsonIgnore
-	@ManyToMany(mappedBy = "fornecedores", cascade = CascadeType.MERGE)
-	List<Produto> produtos = new ArrayList<>();
+	@ManyToMany(mappedBy="fornecedores")
+	private List<Produto> produtos = new ArrayList<>();
 
 	public Fornecedor() {
 		super();
 	}
 
-	public Fornecedor(int id, String nome, String cnpj) {
+	public Fornecedor(Integer id, String nome, String cnpj) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.cnpj = cnpj;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

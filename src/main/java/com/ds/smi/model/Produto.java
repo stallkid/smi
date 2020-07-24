@@ -11,7 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Produto {
@@ -23,12 +24,16 @@ public class Produto {
 	private String marca;
 	private String descricao;
 	
-	@ManyToOne
-	@JoinColumn(name = "categoria_id")
-	private Categoria categoria;
+	@JsonIgnore
+	@ManyToMany
+	@JoinTable(name = "PRODUTO_CATEGORIA",
+		joinColumns = @JoinColumn(name = "produto_id"),
+		inverseJoinColumns = @JoinColumn(name = "categoria_id")
+	)
+	private List<Categoria> categorias = new ArrayList<>();
 	private double preco;
 	
-	@ManyToMany(cascade = CascadeType.MERGE)
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(
 	  name = "fornecedores_produtos", 
 	  joinColumns = @JoinColumn(name = "produto_id"), 
@@ -38,12 +43,11 @@ public class Produto {
 	public Produto() {
 	}
 
-	public Produto(Integer id, String nome, String marca, String descricao, Categoria categoria, double preco) {
+	public Produto(Integer id, String nome, String marca, String descricao, double preco) {
 		this.id = id;
 		this.nome = nome;
 		this.marca = marca;
 		this.descricao = descricao;
-		this.categoria = categoria;
 		this.preco = preco;
 	}
 
@@ -79,12 +83,12 @@ public class Produto {
 		this.descricao = descricao;
 	}
 
-	public Categoria getCategoria() {
-		return categoria;
+	public List<Categoria> getCategorias() {
+		return categorias;
 	}
 
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
+	public void setCategorias(List<Categoria> categorias) {
+		this.categorias = categorias;
 	}
 
 	public double getPreco() {

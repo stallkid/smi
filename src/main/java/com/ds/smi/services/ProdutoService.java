@@ -11,9 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.ds.smi.dto.request.ProdutoRequest;
-import com.ds.smi.model.Categoria;
 import com.ds.smi.model.Produto;
-import com.ds.smi.repositories.CategoriaRepository;
 import com.ds.smi.repositories.ProdutoRepository;
 import com.ds.smi.services.exceptions.DataIntegrityException;
 import com.ds.smi.services.exceptions.ObjectNotFoundException;
@@ -24,9 +22,6 @@ public class ProdutoService {
 	
 	@Autowired
 	private ProdutoRepository prodRepo;
-	
-	@Autowired
-	private CategoriaRepository catRepo;
 
 	public Produto find(Integer id) {
 		Optional<Produto> obj = prodRepo.findById(id);
@@ -51,7 +46,7 @@ public class ProdutoService {
 			prodRepo.deleteById(id);
 		}
 		catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Não é possível excluir uma Produto que possui produtos");
+			throw new DataIntegrityException("Não é possível excluir o Produto");
 		}
 	}
 	
@@ -65,8 +60,7 @@ public class ProdutoService {
 	}
 	
 	public Produto fromDTO(ProdutoRequest objDto) {
-		Categoria cat = this.catRepo.findCategoriaById(objDto.getCategoria()); 
-		return new Produto(objDto.getId(), objDto.getNome(), objDto.getMarca(), objDto.getDescricao(), cat, objDto.getPreco());
+		return new Produto(objDto.getId(), objDto.getNome(), objDto.getMarca(), objDto.getDescricao(), objDto.getPreco());
 	}
 	
 	private void updateData(Produto newObj, Produto obj) {

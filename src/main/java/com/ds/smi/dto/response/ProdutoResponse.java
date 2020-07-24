@@ -15,7 +15,7 @@ public class ProdutoResponse implements Serializable {
 	private String nome;
 	private String marca;
 	private String descricao;
-	private Categoria categoria;
+	private List<Categoria> categorias = new ArrayList<>();
 	private double preco;
 	List<Fornecedor> fornecedores = new ArrayList<>();
 	
@@ -28,7 +28,6 @@ public class ProdutoResponse implements Serializable {
 		this.nome = obj.getNome();
 		this.marca = obj.getMarca();
 		this.descricao = obj.getDescricao();
-		this.categoria = obj.getCategoria();
 		this.preco = obj.getPreco();
 		this.fornecedores = obj.getFornecedores();
 	}
@@ -65,12 +64,12 @@ public class ProdutoResponse implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public Categoria getCategoria() {
-		return categoria;
+	public List<Categoria> getCategorias() {
+		return categorias;
 	}
 
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
+	public void setCategorias(List<Categoria> categorias) {
+		this.categorias = categorias;
 	}
 
 	public double getPreco() {
