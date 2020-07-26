@@ -1,22 +1,30 @@
 package com.ds.smi.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
-public class Funcionario {
-
+public class Funcionario implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
 	private String sobrenome;
 	
-	@ManyToOne
+	@JsonIgnore
+	@OneToOne
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
 	
@@ -37,7 +45,7 @@ public class Funcionario {
 		this.setor = setor;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
