@@ -9,14 +9,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.ds.smi.model.Categoria;
-import com.ds.smi.model.Estoque;
-import com.ds.smi.model.Fornecedor;
 import com.ds.smi.model.Funcionario;
-import com.ds.smi.model.Lote;
 import com.ds.smi.model.Produto;
 import com.ds.smi.model.SetorFuncionario;
 import com.ds.smi.model.Usuario;
-import com.ds.smi.model.enums.EstoqueStatus;
 import com.ds.smi.repositories.CategoriaRepository;
 import com.ds.smi.repositories.EstoqueRepository;
 import com.ds.smi.repositories.FornecedorRepository;
@@ -94,24 +90,24 @@ public class SmiApplication implements CommandLineRunner {
 		
 //		estoqueRepo.save(estoque1);
 		
-		Usuario user1 = new Usuario(1, "renan@test.com", "1234");
-		Usuario user2 = new Usuario(2, "paulo@test.com", "2341");
-		Usuario user3 = new Usuario(3, "manu@test.com", "3412");
+		Usuario user1 = new Usuario(null, "renan@test.com", "1234");
+		Usuario user2 = new Usuario(null, "paulo@test.com", "2341");
+		Usuario user3 = new Usuario(null, "manu@test.com", "3412");
 		
 		userRepo.saveAll(Arrays.asList(user1, user2, user3));
 		
-		SetorFuncionario setor1 = new SetorFuncionario(1, "Estoque");
-		SetorFuncionario setor2 = new SetorFuncionario(2, "Administração");
-		SetorFuncionario setor3 = new SetorFuncionario(3, "Logistica");
-		SetorFuncionario setor4 = new SetorFuncionario(4, "Açougue");
-		SetorFuncionario setor5 = new SetorFuncionario(5, "Padaria");
+		SetorFuncionario setor1 = new SetorFuncionario(null, "Estoque");
+		SetorFuncionario setor2 = new SetorFuncionario(null, "Administração");
+		SetorFuncionario setor3 = new SetorFuncionario(null, "Logistica");
+		SetorFuncionario setor4 = new SetorFuncionario(null, "Açougue");
+		SetorFuncionario setor5 = new SetorFuncionario(null, "Padaria");
 		
 		setorRepo.saveAll(Arrays.asList(setor1, setor2, setor3, setor4, setor5));
 		
-		Funcionario func1 = new Funcionario(1, "Renan", "Luis Bianchini", user1, setor1);
-		Funcionario func2 = new Funcionario(2, "Manu", "Vegas", user3, setor2);
-		Funcionario func3 = new Funcionario(3, "Paulo", "Rivera", user2, setor4);
-		
+		Funcionario func1 = new Funcionario(null, "Renan", "Luis Bianchini", user1, setor2);
+		Funcionario func2 = new Funcionario(null, "Manu", "Vegas", user3, setor2);
+		Funcionario func3 = new Funcionario(null, "Paulo", "Rivera", user2, setor5);
+
 		funcRepo.saveAll(Arrays.asList(func1, func2, func3));
 		
 		

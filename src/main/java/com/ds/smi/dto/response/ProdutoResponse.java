@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ds.smi.model.Categoria;
 import com.ds.smi.model.Fornecedor;
 import com.ds.smi.model.Produto;
 
@@ -15,7 +14,6 @@ public class ProdutoResponse implements Serializable {
 	private String nome;
 	private String marca;
 	private String descricao;
-	private List<Categoria> categorias = new ArrayList<>();
 	private double preco;
 	List<Fornecedor> fornecedores = new ArrayList<>();
 	
@@ -62,14 +60,6 @@ public class ProdutoResponse implements Serializable {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
-	}
-
-	public List<Categoria> getCategorias() {
-		return categorias;
-	}
-
-	public void setCategorias(List<Categoria> categorias) {
-		this.categorias = categorias;
 	}
 
 	public double getPreco() {
