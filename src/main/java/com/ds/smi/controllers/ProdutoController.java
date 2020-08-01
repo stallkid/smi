@@ -24,7 +24,7 @@ import com.ds.smi.services.ProdutoService;
 
 
 @RestController
-@RequestMapping(value="/produto")
+@RequestMapping(value="/produtos")
 public class ProdutoController {
 	
 	@Autowired

@@ -23,7 +23,7 @@ import com.ds.smi.model.Categoria;
 import com.ds.smi.services.CategoriaService;
 
 @RestController
-@RequestMapping(value="/categoria")
+@RequestMapping(value="/categorias")
 public class CategoriaController {
 	
 	@Autowired
