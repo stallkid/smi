@@ -9,6 +9,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.ds.smi.model.Categoria;
+import com.ds.smi.model.Fornecedor;
 import com.ds.smi.model.Funcionario;
 import com.ds.smi.model.Produto;
 import com.ds.smi.model.SetorFuncionario;
@@ -62,7 +63,7 @@ public class SmiApplication implements CommandLineRunner {
 		Produto prod1 = new Produto(null, "produto 1", "marca 1", "descrição 1", 17.99);
 		Produto prod2 = new Produto(null, "produto 2", "marca 2", "descrição 2", 15.99);
 		
-//		Fornecedor forn1 = new Fornecedor(null, "nome 1", "cnpj 1");
+		Fornecedor forn1 = new Fornecedor(null, "nome 1", "cnpj 1");
 		
 		cat1.getProdutos().addAll(Arrays.asList(prod1, prod2));
 		cat2.getProdutos().addAll(Arrays.asList(prod1));
@@ -71,14 +72,14 @@ public class SmiApplication implements CommandLineRunner {
 		prod1.getCategorias().addAll(Arrays.asList(cat1,cat2));
 		prod2.getCategorias().addAll(Arrays.asList(cat1,cat3));
 		
-//		forn1.getProdutos().addAll(Arrays.asList(prod1, prod2));
+		prod1.getFornecedores().addAll(Arrays.asList(forn1));
+		prod2.getFornecedores().addAll(Arrays.asList(forn1));
 		
-//		prod1.getFornecedores().addAll(Arrays.asList(forn1));
-//		prod2.getFornecedores().addAll(Arrays.asList(forn1));
+		forn1.getProdutos().addAll(Arrays.asList(prod1, prod2));
 		
 		catRepo.saveAll(Arrays.asList(cat1, cat2, cat3));
 		prodRepo.saveAll(Arrays.asList(prod1, prod2));
-//		fornRepo.saveAll(Arrays.asList(forn1));
+		fornRepo.saveAll(Arrays.asList(forn1));
 		
 		Date date1 = new Date();
 		
