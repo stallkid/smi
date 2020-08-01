@@ -17,26 +17,28 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.ds.smi.dto.ProdutoDTO;
+import com.ds.smi.dto.request.ProdutoRequest;
+import com.ds.smi.dto.response.ProdutoResponse;
 import com.ds.smi.model.Produto;
 import com.ds.smi.services.ProdutoService;
 
 
 @RestController
-@RequestMapping(value="/produtos")
+@RequestMapping(value="/produto")
 public class ProdutoController {
 	
 	@Autowired
 	private ProdutoService service;
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Produto> find(@PathVariable Integer id) {
+	public ResponseEntity<ProdutoResponse> find(@PathVariable Integer id) {
 		Produto obj = service.find(id);
-		return ResponseEntity.ok().body(obj);
+		ProdutoResponse response = new ProdutoResponse(obj);
+		return ResponseEntity.ok().body(response);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody ProdutoDTO objDto) {
+	public ResponseEntity<Void> insert(@Valid @RequestBody ProdutoRequest objDto) {
 		Produto obj = service.fromDTO(objDto);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -45,7 +47,7 @@ public class ProdutoController {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Void> update(@Valid @RequestBody ProdutoDTO objDto, @PathVariable Integer id) {
+	public ResponseEntity<Void> update(@Valid @RequestBody ProdutoRequest objDto, @PathVariable Integer id) {
 		Produto obj = service.fromDTO(objDto);
 		obj.setId(id);
 		obj = service.update(obj);
@@ -59,20 +61,20 @@ public class ProdutoController {
 	}
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public ResponseEntity<List<ProdutoDTO>> findAll() {
+	public ResponseEntity<List<ProdutoResponse>> findAll() {
 		List<Produto> list = service.findAll();
-		List<ProdutoDTO> listDto = list.stream().map(obj -> new ProdutoDTO(obj)).collect(Collectors.toList());  
+		List<ProdutoResponse> listDto = list.stream().map(obj -> new ProdutoResponse(obj)).collect(Collectors.toList());  
 		return ResponseEntity.ok().body(listDto);
 	}
 	
 	@RequestMapping(value="/page", method=RequestMethod.GET)
-	public ResponseEntity<Page<ProdutoDTO>> findPage(
+	public ResponseEntity<Page<ProdutoResponse>> findPage(
 			@RequestParam(value="page", defaultValue="0") Integer page, 
 			@RequestParam(value="linesPerPage", defaultValue="24") Integer linesPerPage, 
 			@RequestParam(value="orderBy", defaultValue="nome") String orderBy, 
 			@RequestParam(value="direction", defaultValue="ASC") String direction) {
 		Page<Produto> list = service.findPage(page, linesPerPage, orderBy, direction);
-		Page<ProdutoDTO> listDto = list.map(obj -> new ProdutoDTO(obj));  
+		Page<ProdutoResponse> listDto = list.map(obj -> new ProdutoResponse(obj));  
 		return ResponseEntity.ok().body(listDto);
 	}
 

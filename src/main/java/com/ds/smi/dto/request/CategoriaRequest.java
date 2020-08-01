@@ -1,4 +1,4 @@
-package com.ds.smi.dto;
+package com.ds.smi.dto.request;
 
 import java.io.Serializable;
 
@@ -8,7 +8,7 @@ import org.hibernate.validator.constraints.Length;
 
 import com.ds.smi.model.Categoria;
 
-public class CategoriaDTO implements Serializable {
+public class CategoriaRequest implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
@@ -17,10 +17,10 @@ public class CategoriaDTO implements Serializable {
 	@Length(min=5, max=80, message="O tamanho deve ser entre 5 e 80 caracteres")
 	private String nome;
 
-	public CategoriaDTO() {
+	public CategoriaRequest() {
 	}
 	
-	public CategoriaDTO(Categoria obj) {
+	public CategoriaRequest(Categoria obj) {
 		id = obj.getId();
 		nome = obj.getNome();
 	}
@@ -40,4 +40,5 @@ public class CategoriaDTO implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 }

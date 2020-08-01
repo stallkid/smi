@@ -5,12 +5,12 @@ import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.ds.smi.model.Funcionario;
+import com.ds.smi.model.SetorFuncionario;
 
 @Repository
-public interface FuncionarioRepository extends JpaRepository<Funcionario, Integer> {
+public interface SetorFuncionarioRepository extends JpaRepository<SetorFuncionario, Integer> {
 	
 	@Transactional
-	Funcionario findFuncionarioById(Integer id);
+	SetorFuncionario findSetorFuncionarioById(Integer id);
 
 }
