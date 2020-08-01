@@ -26,6 +26,7 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String email;
+	@JsonIgnore
 	private String senha;
 	
 	@ElementCollection(fetch=FetchType.EAGER)
