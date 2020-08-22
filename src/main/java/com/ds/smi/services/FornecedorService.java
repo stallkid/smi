@@ -58,7 +58,7 @@ public class FornecedorService {
 	}
 
 	public Fornecedor fromDTO(FornecedorRequest objDto) {
-		return new Fornecedor(objDto.getId(), objDto.getCnpj(), objDto.getNome());
+		return new Fornecedor(objDto.getId(), objDto.getNome(), objDto.getCnpj());
 	}
 	
 	private void updateData(Fornecedor newObj, Fornecedor obj) {
