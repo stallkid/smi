@@ -1,14 +1,11 @@
 package com.ds.smi.model;
-
 import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
@@ -16,8 +13,7 @@ public class Lote {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	
+	private Integer id;
 	@ManyToOne
 	@JoinColumn(name = "fornecedor_id")
 	private Fornecedor fornecedor;
@@ -27,12 +23,7 @@ public class Lote {
 	@JsonFormat(pattern="dd/MM/yyyy")
 	private Date dataDeEntrega;
 	
-	public Lote() {
-		super();
-	}
-
-	public Lote(int id, Fornecedor fornecedor, double valorCompra, Date validade, Date dataDeEntrega) {
-		super();
+	public Lote(Integer id, Date dataDeEntrega, Date validade, double valorCompra, Fornecedor fornecedor) {
 		this.id = id;
 		this.fornecedor = fornecedor;
 		this.valorCompra = valorCompra;
@@ -44,7 +35,7 @@ public class Lote {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
