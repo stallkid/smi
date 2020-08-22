@@ -1,13 +1,10 @@
 package com.ds.smi;
-
 import java.util.Arrays;
 import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 import com.ds.smi.model.Categoria;
 import com.ds.smi.model.Fornecedor;
 import com.ds.smi.model.Funcionario;
@@ -82,8 +79,12 @@ public class SmiApplication implements CommandLineRunner {
 		fornRepo.saveAll(Arrays.asList(forn1));
 		
 		Date date1 = new Date();
+<<<<<<< vinhali
+		Lote lote1 = new Lote(1, date1, date1, 19.99, forn1);
+=======
 		
 //		Lote lote1 = new Lote(1, forn1, 19.99, date1, date1);
+>>>>>>> development
 		
 //		loteRepo.save(lote1);
 		
@@ -91,9 +92,16 @@ public class SmiApplication implements CommandLineRunner {
 		
 //		estoqueRepo.save(estoque1);
 		
+<<<<<<< vinhali
+		Usuario user1 = new Usuario(1, "renan@test.com", "1234");
+		Usuario user2 = new Usuario(2, "vinhali@test.com", "2341");
+		Usuario user3 = new Usuario(3, "victor@test.com", "3412");
+		Usuario user4 = new Usuario(4, "gabriel@test.com", "4412");
+=======
 		Usuario user1 = new Usuario(null, "renan@test.com", "1234");
 		Usuario user2 = new Usuario(null, "paulo@test.com", "2341");
 		Usuario user3 = new Usuario(null, "manu@test.com", "3412");
+>>>>>>> development
 		
 		userRepo.saveAll(Arrays.asList(user1, user2, user3));
 		
@@ -105,13 +113,21 @@ public class SmiApplication implements CommandLineRunner {
 		
 		setorRepo.saveAll(Arrays.asList(setor1, setor2, setor3, setor4, setor5));
 		
+<<<<<<< vinhali
+		Funcionario func1 = new Funcionario(1, "Renan", "Luis Bianchini", user1, setor1);
+		Funcionario func2 = new Funcionario(2, "Luis", "Vinhali", user2, setor2);
+		Funcionario func3 = new Funcionario(3, "Victor", "Sinésio", user3, setor3);
+		Funcionario func4 = new Funcionario(4, "Gabriel", "Marquesini", user4, setor4);
+=======
 		Funcionario func1 = new Funcionario(null, "Renan", "Luis Bianchini", user1, setor2);
 		Funcionario func2 = new Funcionario(null, "Manu", "Vegas", user3, setor2);
 		Funcionario func3 = new Funcionario(null, "Paulo", "Rivera", user2, setor5);
 
 		funcRepo.saveAll(Arrays.asList(func1, func2, func3));
 		
+>>>>>>> development
 		
+		funcRepo.saveAll(Arrays.asList(func1, func2, func3, func4));
 		
 	}
 
