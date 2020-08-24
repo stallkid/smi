@@ -1,4 +1,5 @@
 package com.ds.smi.model;
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,13 +8,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Lote {
+public class Lote implements Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
 	@ManyToOne
 	@JoinColumn(name = "fornecedor_id")
 	private Fornecedor fornecedor;
@@ -22,6 +26,10 @@ public class Lote {
 	private Date validade;
 	@JsonFormat(pattern="dd/MM/yyyy")
 	private Date dataDeEntrega;
+	
+	public Lote() {
+		
+	}
 	
 	public Lote(Integer id, Date dataDeEntrega, Date validade, double valorCompra, Fornecedor fornecedor) {
 		this.id = id;

@@ -4,11 +4,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -25,6 +27,10 @@ public class Fornecedor implements Serializable {
 	@JsonIgnore
 	@ManyToMany(mappedBy="fornecedores")
 	private List<Produto> produtos = new ArrayList<>();
+	
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Lote> lotes = new ArrayList<>();
 
 	public Fornecedor() {
 		super();
@@ -67,6 +73,14 @@ public class Fornecedor implements Serializable {
 
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
+	}
+
+	public List<Lote> getLotes() {
+		return lotes;
+	}
+
+	public void setLotes(List<Lote> lotes) {
+		this.lotes = lotes;
 	}
 
 	@Override
