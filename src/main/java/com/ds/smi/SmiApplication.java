@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.ds.smi.model.Categoria;
 import com.ds.smi.model.Fornecedor;
 import com.ds.smi.model.Funcionario;
+import com.ds.smi.model.Lote;
 import com.ds.smi.model.Produto;
 import com.ds.smi.model.SetorFuncionario;
 import com.ds.smi.model.Usuario;
@@ -56,6 +57,7 @@ public class SmiApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		Date date1 = new Date();
 		Categoria cat1 = new Categoria(null, "pereciveis");
 		Categoria cat2 = new Categoria(null, "enlatados");
 		Categoria cat3 = new Categoria(null, "panificados");
@@ -64,6 +66,8 @@ public class SmiApplication implements CommandLineRunner {
 		Produto prod2 = new Produto(null, "produto 2", "marca 2", "descrição 2", 15.99);
 		
 		Fornecedor forn1 = new Fornecedor(null, "nome 1", "cnpj 1");
+		
+		Lote lote1 = new Lote(null, date1, date1, 19.99, forn1);
 		
 		cat1.getProdutos().addAll(Arrays.asList(prod1, prod2));
 		cat2.getProdutos().addAll(Arrays.asList(prod1));
@@ -76,20 +80,12 @@ public class SmiApplication implements CommandLineRunner {
 		prod2.getFornecedores().addAll(Arrays.asList(forn1));
 		
 		forn1.getProdutos().addAll(Arrays.asList(prod1, prod2));
+		forn1.getLotes().addAll(Arrays.asList(lote1));
 		
 		catRepo.saveAll(Arrays.asList(cat1, cat2, cat3));
 		prodRepo.saveAll(Arrays.asList(prod1, prod2));
 		fornRepo.saveAll(Arrays.asList(forn1));
-		
-		Date date1 = new Date();
-		
-//		Lote lote1 = new Lote(1, forn1, 19.99, date1, date1);
-		
-//		loteRepo.save(lote1);
-		
-//		Estoque estoque1 = new Estoque(1, prod1, lote1, EstoqueStatus.EM_ESTOQUE, null);
-		
-//		estoqueRepo.save(estoque1);
+		loteRepo.saveAll(Arrays.asList(lote1));
 		
 		Usuario user1 = new Usuario(null, "renan@test.com", "1234");
 		Usuario user2 = new Usuario(null, "paulo@test.com", "2341");
