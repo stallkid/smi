@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.ds.smi.model.Categoria;
 import com.ds.smi.model.Fornecedor;
 import com.ds.smi.model.Funcionario;
+import com.ds.smi.model.Lote;
 import com.ds.smi.model.Produto;
 import com.ds.smi.model.SetorFuncionario;
 import com.ds.smi.model.Usuario;
@@ -83,7 +84,7 @@ public class SmiApplication implements CommandLineRunner {
 		
 		Date date1 = new Date();
 		
-//		Lote lote1 = new Lote(1, forn1, 19.99, date1, date1);
+//		Lote lote1 = new Lote(1, date1, date1, 19.99, forn1);
 		
 //		loteRepo.save(lote1);
 		
