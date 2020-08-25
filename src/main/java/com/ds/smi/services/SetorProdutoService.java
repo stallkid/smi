@@ -21,29 +21,29 @@ import com.ds.smi.services.exceptions.ObjectNotFoundException;
 public class SetorProdutoService {
 	
 	@Autowired
-	private SetorProdutoRepository setorProdutoRepo;
+	private SetorProdutoRepository SetorProdutoRepo;
 	
 	public SetorProduto find(Integer id) {
-		Optional<SetorProduto> obj = setorProdutoRepo.findById(id);
+		Optional<SetorProduto> obj = SetorProdutoRepo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Produto.class.getName()));
 	}
 	
 	public SetorProduto insert(SetorProduto obj) {
 		obj.setId(null);
-		return setorProdutoRepo.save(obj);
+		return SetorProdutoRepo.save(obj);
 	}
 	
 	public SetorProduto update(SetorProduto obj) {
 		SetorProduto newObj = find(obj.getId());
 		updateData(newObj, obj);
-		return setorProdutoRepo.save(newObj);
+		return SetorProdutoRepo.save(newObj);
 	}
 	
 	public void delete(Integer id) {
 		find(id);
 		try {
-			setorProdutoRepo.deleteById(id);
+			SetorProdutoRepo.deleteById(id);
 		}
 		catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException("Não é possível excluir uma Produto que possui produtos");
@@ -51,36 +51,20 @@ public class SetorProdutoService {
 	}
 	
 	public List<SetorProduto> findAll() {
-		return setorProdutoRepo.findAll();
+		return SetorProdutoRepo.findAll();
 	}
 	
 	public Page<SetorProduto> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
-		return setorProdutoRepo.findAll(pageRequest);
+		return SetorProdutoRepo.findAll(pageRequest);
 	}
 	
 	public SetorProduto fromDTO(SetorProdutoRequest objDto) {
-		return new SetorProduto(objDto.getId(), objDto.getLatitude());
+		return new SetorProduto(objDto.getId(), objDto.getLatitude(), objDto.getLongitude(), objDto.getSetor());
 	}
 	
 	private void updateData(SetorProduto newObj, SetorProduto obj) {
-		newObj.setLatitude(obj.getLatitude());
-	}
-	
-	public SetorProduto fromDTO(SetorProdutoRequest objDto) {
-		return new SetorProduto(objDto.getId(), objDto.getLongitude());
-	}
-	
-	private void updateData(SetorProduto newObj, SetorProduto obj) {
-		newObj.setLongitude(obj.getLongitude());
-	}
-	
-	public SetorProduto fromDTO(SetorProdutoRequest objDto) {
-		return new SetorProduto(objDto.getId(), objDto.getSetor());
-	}
-	
-	private void updateData(SetorProduto newObj, SetorProduto obj) {
-		newObj.setSetor(obj.getSetor());
+		newObj.setId(obj.getId());
 	}
 
 }

@@ -13,12 +13,12 @@ public class SetorProdutoResponse implements Serializable {
 	private String setor;
 	
 
-	public SetorProdutoResponse(Integer id, double latitude, double longitude, String setor) {
+	public SetorProdutoResponse(SetorProduto obj) {
 		super();
-		this.id = id;
-		this.latitude = latitude;
-		this.longitude = longitude;
-		this.setor = setor;
+		this.id = obj.getId();
+		this.latitude = obj.getLatitude();
+		this.longitude = obj.getLongitude();
+		this.setor = obj.getSetor();
 	}
 
 

@@ -19,7 +19,7 @@ public class SetorProduto {
 		super();
 	}
 
-	public SetorProduto(Integer id, String nome) {
+	public SetorProduto(Integer id, double latitude, double longitude, String setor) {
 		super();
 		this.id = id;
 		this.latitude = latitude;
