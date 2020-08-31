@@ -5,7 +5,6 @@ import java.io.Serializable;
 public class FuncionarioRequest implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	private Integer id;
 	private String nome;
 	private String sobreNome;
 	private Integer usuarioId;
@@ -14,19 +13,12 @@ public class FuncionarioRequest implements Serializable{
 	public FuncionarioRequest() {
 		super();
 	}
-	public FuncionarioRequest(Integer id, String nome, String sobreNome, Integer usuarioId, Integer setorId) {
+	public FuncionarioRequest(String nome, String sobreNome, Integer usuarioId, Integer setorId) {
 		super();
-		this.id = id;
 		this.nome = nome;
 		this.sobreNome = sobreNome;
 		this.usuarioId = usuarioId;
 		this.setorId = setorId;
-	}
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
 	}
 	public String getNome() {
 		return nome;
