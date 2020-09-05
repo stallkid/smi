@@ -18,7 +18,7 @@ public class Estoque implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	
 	@ManyToOne
 	@JoinColumn(name = "produto_id")
@@ -28,7 +28,7 @@ public class Estoque implements Serializable {
 	@JoinColumn(name = "lote_id")
 	private Lote lote;
 	
-	private int status;
+	private Integer status;
 	
 	@Nullable
 	@ManyToOne
@@ -39,11 +39,11 @@ public class Estoque implements Serializable {
 		super();
 	}
 	
-	public Estoque(int id, Produto produto, Lote lote, EstoqueStatus status, SetorProduto setor) {
+	public Estoque(Integer id, Integer status, Lote lote, Produto produto, SetorProduto setor) {
 		this.id = id;
 		this.produto = produto;
 		this.lote = lote;
-		this.status = (status==null) ? null : status.getCod();
+		this.status = status;
 		this.setor = setor;
 	}
 
@@ -51,7 +51,7 @@ public class Estoque implements Serializable {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -83,7 +83,7 @@ public class Estoque implements Serializable {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
 
