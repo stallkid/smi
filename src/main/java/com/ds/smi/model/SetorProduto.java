@@ -16,7 +16,7 @@ public class SetorProduto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String setor;
-	private String logitute;
+	private String longitute;
 	private String latitude;
 	
 	@OneToMany(mappedBy = "setor")
@@ -26,38 +26,55 @@ public class SetorProduto {
 		super();
 	}
 	
-	public SetorProduto(Integer id, String setor, String logitute, String latitude) {
+	public SetorProduto(Integer id, String setor, String longitute, String latitude) {
 		super();
 		this.id = id;
 		this.setor = setor;
-		this.logitute = logitute;
+		this.longitute = longitute;
 		this.latitude = latitude;
 	}
+
+	
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getsetor() {
+
+	public String getSetor() {
 		return setor;
 	}
-	public void setsetor(String setor) {
+
+	public void setSetor(String setor) {
 		this.setor = setor;
 	}
-	public String getLogitute() {
-		return logitute;
+
+	public String getLongitute() {
+		return longitute;
 	}
-	public void setLogitute(String logitute) {
-		this.logitute = logitute;
+
+	public void setLongitute(String longitute) {
+		this.longitute = longitute;
 	}
+
 	public String getLatitude() {
 		return latitude;
 	}
+
 	public void setLatitude(String latitude) {
 		this.latitude = latitude;
 	}
-	
+
+	public List<Estoque> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(List<Estoque> produtos) {
+		this.produtos = produtos;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -84,7 +101,7 @@ public class SetorProduto {
 	
 	@Override
 	public String toString() {
-		return "MapaProdutos [id=" + id + ", setor=" + setor + ", logitute=" + logitute
+		return "MapaProdutos [id=" + id + ", setor=" + setor + ", longitute=" + longitute
 				+ ", latitude=" + latitude + "]";
 	}
 
