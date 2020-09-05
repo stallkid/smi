@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.ds.smi.model.Produto;
+import com.ds.smi.model.SetorFuncionario;
 
 @Repository
 public interface ProdutoRepository extends JpaRepository<Produto, Integer> {
@@ -18,5 +19,6 @@ public interface ProdutoRepository extends JpaRepository<Produto, Integer> {
 	
 	@Transactional
 	Produto findProdutoById(Integer id);
+
 
 }
