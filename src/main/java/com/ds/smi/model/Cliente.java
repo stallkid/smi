@@ -16,7 +16,7 @@ public class Cliente {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private int id;
 	private String nome;
 	private String sobreNome;
 	
@@ -31,7 +31,7 @@ public class Cliente {
 		super();
 	}
 
-	public Cliente(Integer id, String nome, String sobreNome, Usuario usuario) {
+	public Cliente(int id, String nome, String sobreNome, Usuario usuario) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -39,11 +39,11 @@ public class Cliente {
 		this.usuario = usuario;
 	}
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -81,8 +81,8 @@ public class Cliente {
 
 	@Override
 	public int hashCode() {
-		final Integer prime = 31;
-		Integer result = 1;
+		final int prime = 31;
+		int result = 1;
 		result = prime * result + id;
 		return result;
 	}
