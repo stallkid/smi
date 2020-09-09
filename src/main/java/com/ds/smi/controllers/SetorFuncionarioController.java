@@ -23,7 +23,7 @@ import com.ds.smi.model.SetorFuncionario;
 import com.ds.smi.services.SetorFuncionarioService;
 
 @RestController
-@RequestMapping(value="setorFuncionario")
+@RequestMapping(value="/setorFuncionarios")
 public class SetorFuncionarioController {
 	
 	@Autowired
