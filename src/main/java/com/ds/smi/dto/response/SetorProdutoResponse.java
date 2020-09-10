@@ -15,7 +15,6 @@ public class SetorProdutoResponse implements Serializable {
 
 	public SetorProdutoResponse(SetorProduto obj) {
 		super();
-		this.id = obj.getId();
 		this.latitude = obj.getLatitude();
 		this.longitude = obj.getLongitude();
 		this.setor = obj.getSetor();
