@@ -19,14 +19,13 @@ public class SetorProduto {
 		super();
 	}
 
-	public SetorProduto(Integer id, double latitude, double longitude, String setor) {
+	public SetorProduto(Integer id, String setor, double latitude, double longitude) {
 		super();
 		this.id = id;
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.setor = setor;
 	}
-
 
 	public Integer getId() {
 		return id;

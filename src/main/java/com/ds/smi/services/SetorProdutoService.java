@@ -60,11 +60,13 @@ public class SetorProdutoService {
 	}
 	
 	public SetorProduto fromDTO(SetorProdutoRequest objDto) {
-		return new SetorProduto(objDto.getId(), objDto.getLatitude(), objDto.getLongitude(), objDto.getSetor());
+		return new SetorProduto(objDto.getId(), objDto.getSetor(), objDto.getLatitude(), objDto.getLongitude());
 	}
 	
 	private void updateData(SetorProduto newObj, SetorProduto obj) {
-		newObj.setId(obj.getId());
+		newObj.setLatitude(obj.getLatitude());
+		newObj.setLongitude(obj.getLongitude());
+		newObj.setSetor(obj.getSetor());
 	}
 
 }
