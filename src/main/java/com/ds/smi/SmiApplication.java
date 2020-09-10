@@ -107,7 +107,7 @@ public class SmiApplication implements CommandLineRunner {
 		
 		setorRepo.saveAll(Arrays.asList(setor1, setor2, setor3, setor4, setor5));
 		
-		SetorProduto setorproduto1 = new SetorProduto(null, "Produtos", "123", "123");
+		SetorProduto setorproduto1 = new SetorProduto(null, "Produtos", 123.22, 122.11);
 		setorProdutoRepo.saveAll(Arrays.asList(setorproduto1));
 		
 		Estoque estoque1 = new Estoque(null, 1, lote1, prod1, setorproduto1);
