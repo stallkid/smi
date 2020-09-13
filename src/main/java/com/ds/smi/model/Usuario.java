@@ -57,19 +57,19 @@ public class Usuario implements Serializable {
 		this.id = id;
 	}
 
-	public String getemail() {
+	public String getEmail() {
 		return email;
 	}
 
-	public void setemail(String email) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	public String getsenha() {
+	public String getSenha() {
 		return senha;
 	}
 
-	public void setsenha(String senha) {
+	public void setSenha(String senha) {
 		this.senha = senha;
 	}
 	
