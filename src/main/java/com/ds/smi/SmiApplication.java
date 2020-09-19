@@ -17,6 +17,7 @@ import com.ds.smi.model.Produto;
 import com.ds.smi.model.SetorFuncionario;
 import com.ds.smi.model.SetorProduto;
 import com.ds.smi.model.Usuario;
+import com.ds.smi.model.enums.EstoqueStatus;
 import com.ds.smi.repositories.CategoriaRepository;
 import com.ds.smi.repositories.EstoqueRepository;
 import com.ds.smi.repositories.FornecedorRepository;
@@ -110,8 +111,8 @@ public class SmiApplication implements CommandLineRunner {
 		SetorProduto setorproduto1 = new SetorProduto(null, "Produtos", 123.22, 122.11);
 		setorProdutoRepo.saveAll(Arrays.asList(setorproduto1));
 		
-		Estoque estoque1 = new Estoque(null, 1, lote1, prod1, setorproduto1);
-		//estoqueRepo.saveAll(Arrays.asList(estoque1));
+		Estoque estoque1 = new Estoque(null, prod1, lote1, EstoqueStatus.toEnum(1), setorproduto1);
+		estoqueRepo.saveAll(Arrays.asList(estoque1));
 		
 		Funcionario func1 = new Funcionario(null, "Renan", "Luis Bianchini", user1, setor2);
 		Funcionario func2 = new Funcionario(null, "Manu", "Vegas", user3, setor2);

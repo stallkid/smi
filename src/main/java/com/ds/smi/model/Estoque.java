@@ -28,26 +28,26 @@ public class Estoque implements Serializable {
 	@JoinColumn(name = "lote_id")
 	private Lote lote;
 	
-	private Integer status;
-	
 	@Nullable
 	@ManyToOne
 	@JoinColumn(name = "setor_id")
 	private SetorProduto setor;
 	
+	private Integer status;
+	
 	public Estoque() {
 		super();
 	}
 	
-	public Estoque(Integer id, Integer status, Lote lote, Produto produto, SetorProduto setor) {
+	public Estoque(Integer id, Produto produto, Lote lote, EstoqueStatus status, SetorProduto setor) {
 		this.id = id;
 		this.produto = produto;
 		this.lote = lote;
-		this.status = status;
+		this.status = (status==null) ? null : status.getCod();
 		this.setor = setor;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
@@ -71,21 +71,14 @@ public class Estoque implements Serializable {
 		this.lote = lote;
 	}
 
-	public EstoqueStatus getstatus() {
+	public EstoqueStatus getTipo() {
 		return EstoqueStatus.toEnum(status);
 	}
 
-	public void setstatus(EstoqueStatus status) {
+	public void setStatus(EstoqueStatus status) {
 		this.status = status.getCod();
 	}
 
-	public int getStatus() {
-		return status;
-	}
-
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
 
 	public SetorProduto getSetor() {
 		return setor;
