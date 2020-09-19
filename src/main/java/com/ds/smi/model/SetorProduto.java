@@ -36,23 +36,23 @@ public class SetorProduto {
 	}
 
 	public double getLatitude() {
-		return getLatitude();
+		return latitude;
 	}
 
 	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
-	
+
 	public double getLongitude() {
-		return getLongitude();
+		return longitude;
 	}
 
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
-	
+
 	public String getSetor() {
-		return getSetor();
+		return setor;
 	}
 
 	public void setSetor(String setor) {

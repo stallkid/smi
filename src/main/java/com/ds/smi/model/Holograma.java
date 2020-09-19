@@ -4,7 +4,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Holograma {
@@ -13,10 +13,12 @@ public class Holograma {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	@ManyToOne
+	
+	@OneToOne
 	@JoinColumn(name="produto_id")
 	private Produto produto;
-	@ManyToOne
+	
+	@OneToOne
 	@JoinColumn(name="setor_id")
 	private SetorProduto setor;
 
