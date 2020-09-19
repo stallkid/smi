@@ -9,11 +9,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.ds.smi.model.Categoria;
+import com.ds.smi.model.Estoque;
 import com.ds.smi.model.Fornecedor;
 import com.ds.smi.model.Funcionario;
 import com.ds.smi.model.Lote;
 import com.ds.smi.model.Produto;
 import com.ds.smi.model.SetorFuncionario;
+import com.ds.smi.model.SetorProduto;
 import com.ds.smi.model.Usuario;
 import com.ds.smi.repositories.CategoriaRepository;
 import com.ds.smi.repositories.EstoqueRepository;
@@ -22,6 +24,7 @@ import com.ds.smi.repositories.FuncionarioRepository;
 import com.ds.smi.repositories.LoteRepository;
 import com.ds.smi.repositories.ProdutoRepository;
 import com.ds.smi.repositories.SetorFuncionarioRepository;
+import com.ds.smi.repositories.SetorProdutoRepository;
 import com.ds.smi.repositories.UsuarioRepository;
 
 @SpringBootApplication
@@ -47,6 +50,9 @@ public class SmiApplication implements CommandLineRunner {
 	
 	@Autowired
 	private SetorFuncionarioRepository setorRepo;
+	
+	@Autowired
+	private SetorProdutoRepository setorProdutoRepo;
 	
 	@Autowired
 	private FuncionarioRepository funcRepo;
@@ -101,12 +107,17 @@ public class SmiApplication implements CommandLineRunner {
 		
 		setorRepo.saveAll(Arrays.asList(setor1, setor2, setor3, setor4, setor5));
 		
+		SetorProduto setorproduto1 = new SetorProduto(null, "Produtos", 123.22, 122.11);
+		setorProdutoRepo.saveAll(Arrays.asList(setorproduto1));
+		
+		Estoque estoque1 = new Estoque(null, 1, lote1, prod1, setorproduto1);
+		//estoqueRepo.saveAll(Arrays.asList(estoque1));
+		
 		Funcionario func1 = new Funcionario(null, "Renan", "Luis Bianchini", user1, setor2);
 		Funcionario func2 = new Funcionario(null, "Manu", "Vegas", user3, setor2);
 		Funcionario func3 = new Funcionario(null, "Paulo", "Rivera", user2, setor5);
 
 		funcRepo.saveAll(Arrays.asList(func1, func2, func3));
-		
 		
 		
 	}

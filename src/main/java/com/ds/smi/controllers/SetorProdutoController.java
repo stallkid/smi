@@ -17,28 +17,28 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.ds.smi.dto.request.SetorFuncionarioRequest;
-import com.ds.smi.dto.response.SetorFuncionarioResponse;
-import com.ds.smi.model.SetorFuncionario;
-import com.ds.smi.services.SetorFuncionarioService;
+import com.ds.smi.dto.request.SetorProdutoRequest;
+import com.ds.smi.dto.response.SetorProdutoResponse;
+import com.ds.smi.model.SetorProduto;
+import com.ds.smi.services.SetorProdutoService;
 
 @RestController
-@RequestMapping(value="/setorFuncionarios")
-public class SetorFuncionarioController {
+@RequestMapping(value="setorProduto")
+public class SetorProdutoController {
 	
 	@Autowired
-	private SetorFuncionarioService service;
+	private SetorProdutoService service;
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<SetorFuncionarioResponse> find(@PathVariable Integer id) {
-		SetorFuncionario obj = service.find(id);
-		SetorFuncionarioResponse response = new SetorFuncionarioResponse(obj);
+	public ResponseEntity<SetorProdutoResponse> find(@PathVariable Integer id) {
+		SetorProduto obj = service.find(id);
+		SetorProdutoResponse response = new SetorProdutoResponse(obj);
 		return ResponseEntity.ok().body(response);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody SetorFuncionarioRequest objDto) {
-		SetorFuncionario obj = service.fromDTO(objDto);
+	public ResponseEntity<Void> insert(@Valid @RequestBody SetorProdutoRequest objDto) {
+		SetorProduto obj = service.fromDTO(objDto);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 			.path("/{id}").buildAndExpand(obj.getId()).toUri();
@@ -46,8 +46,8 @@ public class SetorFuncionarioController {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Void> update(@Valid @RequestBody SetorFuncionarioRequest objDto, @PathVariable Integer id) {
-		SetorFuncionario obj = service.fromDTO(objDto);
+	public ResponseEntity<Void> update(@Valid @RequestBody SetorProdutoRequest objDto, @PathVariable Integer id) {
+		SetorProduto obj = service.fromDTO(objDto);
 		obj.setId(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
@@ -60,20 +60,20 @@ public class SetorFuncionarioController {
 	}
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public ResponseEntity<List<SetorFuncionarioResponse>> findAll() {
-		List<SetorFuncionario> list = service.findAll();
-		List<SetorFuncionarioResponse> listDto = list.stream().map(obj -> new SetorFuncionarioResponse(obj)).collect(Collectors.toList());  
+	public ResponseEntity<List<SetorProdutoResponse>> findAll() {
+		List<SetorProduto> list = service.findAll();
+		List<SetorProdutoResponse> listDto = list.stream().map(obj -> new SetorProdutoResponse(obj)).collect(Collectors.toList());  
 		return ResponseEntity.ok().body(listDto);
 	}
 	
 	@RequestMapping(value="/page", method=RequestMethod.GET)
-	public ResponseEntity<Page<SetorFuncionarioResponse>> findPage(
+	public ResponseEntity<Page<SetorProdutoResponse>> findPage(
 			@RequestParam(value="page", defaultValue="0") Integer page, 
 			@RequestParam(value="linesPerPage", defaultValue="24") Integer linesPerPage, 
 			@RequestParam(value="orderBy", defaultValue="nome") String orderBy, 
 			@RequestParam(value="direction", defaultValue="ASC") String direction) {
-		Page<SetorFuncionario> list = service.findPage(page, linesPerPage, orderBy, direction);
-		Page<SetorFuncionarioResponse> listDto = list.map(obj -> new SetorFuncionarioResponse(obj));  
+		Page<SetorProduto> list = service.findPage(page, linesPerPage, orderBy, direction);
+		Page<SetorProdutoResponse> listDto = list.map(obj -> new SetorProdutoResponse(obj));  
 		return ResponseEntity.ok().body(listDto);
 	}
 

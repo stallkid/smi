@@ -5,12 +5,12 @@ import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.ds.smi.model.Lote;
+import com.ds.smi.model.Cliente;
 
 @Repository
-public interface LoteRepository extends JpaRepository<Lote, Integer> {
+public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 	
 	@Transactional
-	Lote findLoteById(Integer id);
+	Cliente findFuncionarioById(Integer id);
 
 }

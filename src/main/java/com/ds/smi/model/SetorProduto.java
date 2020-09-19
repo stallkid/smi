@@ -1,70 +1,72 @@
 package com.ds.smi.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @Entity
 public class SetorProduto {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	private double latitude;
+	private double longitude;
 	private String setor;
-	private String logitute;
-	private String latitude;
-	
-	@OneToMany(mappedBy = "setor")
-	List<Estoque> produtos = new ArrayList<>();
 	
 	public SetorProduto() {
 		super();
 	}
-	
-	public SetorProduto(Integer id, String setor, String logitute, String latitude) {
+
+	public SetorProduto(Integer id, String setor, double latitude, double longitude) {
 		super();
 		this.id = id;
-		this.setor = setor;
-		this.logitute = logitute;
 		this.latitude = latitude;
+		this.longitude = longitude;
+		this.setor = setor;
 	}
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getsetor() {
-		return setor;
+
+	public double getLatitude() {
+		return getLatitude();
 	}
-	public void setsetor(String setor) {
-		this.setor = setor;
-	}
-	public String getLogitute() {
-		return logitute;
-	}
-	public void setLogitute(String logitute) {
-		this.logitute = logitute;
-	}
-	public String getLatitude() {
-		return latitude;
-	}
-	public void setLatitude(String latitude) {
+
+	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
 	
+	public double getLongitude() {
+		return getLongitude();
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+	
+	public String getSetor() {
+		return getSetor();
+	}
+
+	public void setSetor(String setor) {
+		this.setor = setor;
+	}
+
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		final Integer prime = 31;
+		Integer result = 1;
+		result = prime * result + id;
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -74,18 +76,14 @@ public class SetorProduto {
 		if (getClass() != obj.getClass())
 			return false;
 		SetorProduto other = (SetorProduto) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
+		if (id != other.id)
 			return false;
 		return true;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "MapaProdutos [id=" + id + ", setor=" + setor + ", logitute=" + logitute
-				+ ", latitude=" + latitude + "]";
+		return "Setor [id=" + id + ", latitude=" + latitude + ", longitude=" + longitude + ", setor" + setor + "]";
 	}
-
+	
 }
