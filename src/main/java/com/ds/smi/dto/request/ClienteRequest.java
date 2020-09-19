@@ -2,23 +2,29 @@ package com.ds.smi.dto.request;
 
 import java.io.Serializable;
 
-public class FuncionarioRequest implements Serializable{
+public class ClienteRequest implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
+	private Integer id;
 	private String nome;
 	private String sobreNome;
 	private Integer usuarioId;
-	private Integer setorId;
 	
-	public FuncionarioRequest() {
+	public ClienteRequest() {
 		super();
 	}
-	public FuncionarioRequest(String nome, String sobreNome, Integer usuarioId, Integer setorId) {
+	public ClienteRequest(Integer id, String nome, String sobreNome, Integer usuarioId) {
 		super();
+		this.id = id;
 		this.nome = nome;
 		this.sobreNome = sobreNome;
 		this.usuarioId = usuarioId;
-		this.setorId = setorId;
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	public String getNome() {
 		return nome;
@@ -37,12 +43,6 @@ public class FuncionarioRequest implements Serializable{
 	}
 	public void setUsuarioId(Integer usuarioId) {
 		this.usuarioId = usuarioId;
-	}
-	public Integer getSetorId() {
-		return setorId;
-	}
-	public void setSetorId(Integer setorId) {
-		this.setorId = setorId;
 	}
 
 }

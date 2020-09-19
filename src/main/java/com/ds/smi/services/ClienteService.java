@@ -10,76 +10,68 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.ds.smi.dto.request.FuncionarioRequest;
-import com.ds.smi.model.Funcionario;
+import com.ds.smi.dto.request.ClienteRequest;
+import com.ds.smi.model.Cliente;
 import com.ds.smi.model.Produto;
-import com.ds.smi.model.SetorFuncionario;
 import com.ds.smi.model.Usuario;
-import com.ds.smi.repositories.FuncionarioRepository;
-import com.ds.smi.repositories.SetorFuncionarioRepository;
+import com.ds.smi.repositories.ClienteRepository;
 import com.ds.smi.repositories.UsuarioRepository;
 import com.ds.smi.services.exceptions.DataIntegrityException;
 import com.ds.smi.services.exceptions.ObjectNotFoundException;
 
 @Service
-public class FuncionarioService {
+public class ClienteService {
 	
 	@Autowired
-	private FuncionarioRepository funcRepo;
+	private ClienteRepository clienteRepo;
 	
 	@Autowired
 	private UsuarioRepository usuarioRepo;
 	
-	@Autowired
-	private SetorFuncionarioRepository setorFuncRepo;
 	
-	public Funcionario find(Integer id) {
-		Optional<Funcionario> obj = funcRepo.findById(id);
+	public Cliente find(Integer id) {
+		Optional<Cliente> obj = clienteRepo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Produto.class.getName()));
 	}
 	
-	public Funcionario insert(Funcionario obj) {
+	public Cliente insert(Cliente obj) {
 		obj.setId(null);
-		return funcRepo.save(obj);
+		return clienteRepo.save(obj);
 	}
 	
-	public Funcionario update(Funcionario obj) {
-		Funcionario newObj = find(obj.getId());
+	public Cliente update(Cliente obj) {
+		Cliente newObj = find(obj.getId());
 		updateData(newObj, obj);
-		return funcRepo.save(newObj);
+		return clienteRepo.save(newObj);
 	}
 	
 	public void delete(Integer id) {
 		find(id);
 		try {
-			funcRepo.deleteById(id);
+			clienteRepo.deleteById(id);
 		}
 		catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException("Não é possível excluir uma Produto que possui produtos");
 		}
 	}
 	
-	public List<Funcionario> findAll() {
-		return funcRepo.findAll();
+	public List<Cliente> findAll() {
+		return clienteRepo.findAll();
 	}
 	
-	public Page<Funcionario> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+	public Page<Cliente> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
-		return funcRepo.findAll(pageRequest);
+		return clienteRepo.findAll(pageRequest);
 	}
 	
-	public Funcionario fromDTO(FuncionarioRequest objDto) {
+	public Cliente fromDTO(ClienteRequest objDto) {
 		Usuario usuario = this.usuarioRepo.findUsuarioById(objDto.getUsuarioId());
-		SetorFuncionario setor = this.setorFuncRepo.findSetorFuncionarioById(objDto.getSetorId());
-		return new Funcionario(null, objDto.getNome(), objDto.getSobreNome(), usuario, setor);
+		return new Cliente(objDto.getId(), objDto.getNome(), objDto.getSobreNome(), usuario);
 	}
 	
-	private void updateData(Funcionario newObj, Funcionario obj) {
+	private void updateData(Cliente newObj, Cliente obj) {
 		newObj.setNome(obj.getNome());
-		newObj.setSobrenome(obj.getSobrenome());
-		newObj.setSetor(obj.getSetor());
-		newObj.setUsuario(obj.getUsuario());
 	}
 
 }

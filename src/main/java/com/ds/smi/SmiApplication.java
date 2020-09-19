@@ -12,6 +12,7 @@ import com.ds.smi.model.Categoria;
 import com.ds.smi.model.Estoque;
 import com.ds.smi.model.Fornecedor;
 import com.ds.smi.model.Funcionario;
+import com.ds.smi.model.Holograma;
 import com.ds.smi.model.Lote;
 import com.ds.smi.model.Produto;
 import com.ds.smi.model.SetorFuncionario;
@@ -22,6 +23,7 @@ import com.ds.smi.repositories.CategoriaRepository;
 import com.ds.smi.repositories.EstoqueRepository;
 import com.ds.smi.repositories.FornecedorRepository;
 import com.ds.smi.repositories.FuncionarioRepository;
+import com.ds.smi.repositories.HologramaRepository;
 import com.ds.smi.repositories.LoteRepository;
 import com.ds.smi.repositories.ProdutoRepository;
 import com.ds.smi.repositories.SetorFuncionarioRepository;
@@ -57,6 +59,9 @@ public class SmiApplication implements CommandLineRunner {
 	
 	@Autowired
 	private FuncionarioRepository funcRepo;
+	
+	@Autowired
+	private HologramaRepository holRepo;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SmiApplication.class, args);
@@ -119,6 +124,9 @@ public class SmiApplication implements CommandLineRunner {
 		Funcionario func3 = new Funcionario(null, "Paulo", "Rivera", user2, setor5);
 
 		funcRepo.saveAll(Arrays.asList(func1, func2, func3));
+		
+		Holograma hol1 = new Holograma(null, "Luis", prod1, setorproduto1);
+		holRepo.saveAll(Arrays.asList(hol1));
 		
 		
 	}
