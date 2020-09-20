@@ -71,7 +71,7 @@ public class Estoque implements Serializable {
 		this.lote = lote;
 	}
 
-	public EstoqueStatus getTipo() {
+	public EstoqueStatus getStatus() {
 		return EstoqueStatus.toEnum(status);
 	}
 
