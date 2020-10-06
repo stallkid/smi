@@ -58,10 +58,11 @@ public class UsuarioService {
 	}
 
 	public Usuario fromDTO(UsuarioRequest objDto) {
-		return new Usuario(objDto.getId(), objDto.getSenha(), objDto.getEmail());
+		return new Usuario(objDto.getId(), objDto.getEmail(), objDto.getSenha());
 	}
 	
 	private void updateData(Usuario newObj, Usuario obj) {
+		newObj.setEmail(obj.getSenha());
 		newObj.setSenha(obj.getSenha());
 	}
 

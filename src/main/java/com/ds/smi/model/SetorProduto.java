@@ -1,13 +1,15 @@
 package com.ds.smi.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class SetorProduto {
-
+public class SetorProduto implements Serializable {
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -16,11 +18,10 @@ public class SetorProduto {
 	private String setor;
 	
 	public SetorProduto() {
-		super();
+		
 	}
-
-	public SetorProduto(Integer id, String setor, double latitude, double longitude) {
-		super();
+	
+	public SetorProduto(Integer id, String setor, double longitude, double latitude) {
 		this.id = id;
 		this.latitude = latitude;
 		this.longitude = longitude;

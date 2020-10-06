@@ -1,7 +1,5 @@
 package com.ds.smi.dto.request;
 import java.io.Serializable;
-import com.ds.smi.model.Produto;
-import com.ds.smi.model.SetorProduto;
 
 public class HologramaRequest implements Serializable {
 	private static final long serialVersionUID = 1L;
