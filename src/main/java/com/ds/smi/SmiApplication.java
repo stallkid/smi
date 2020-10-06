@@ -9,19 +9,24 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.ds.smi.model.Categoria;
+import com.ds.smi.model.Estoque;
 import com.ds.smi.model.Fornecedor;
 import com.ds.smi.model.Funcionario;
+import com.ds.smi.model.Holograma;
 import com.ds.smi.model.Lote;
 import com.ds.smi.model.Produto;
 import com.ds.smi.model.SetorFuncionario;
+import com.ds.smi.model.SetorProduto;
 import com.ds.smi.model.Usuario;
 import com.ds.smi.repositories.CategoriaRepository;
 import com.ds.smi.repositories.EstoqueRepository;
 import com.ds.smi.repositories.FornecedorRepository;
 import com.ds.smi.repositories.FuncionarioRepository;
+import com.ds.smi.repositories.HologramaRepository;
 import com.ds.smi.repositories.LoteRepository;
 import com.ds.smi.repositories.ProdutoRepository;
 import com.ds.smi.repositories.SetorFuncionarioRepository;
+import com.ds.smi.repositories.SetorProdutoRepository;
 import com.ds.smi.repositories.UsuarioRepository;
 
 @SpringBootApplication
@@ -49,7 +54,13 @@ public class SmiApplication implements CommandLineRunner {
 	private SetorFuncionarioRepository setorRepo;
 	
 	@Autowired
+	private SetorProdutoRepository setorProdutoRepo;
+	
+	@Autowired
 	private FuncionarioRepository funcRepo;
+	
+	@Autowired
+	private HologramaRepository holRepo;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SmiApplication.class, args);
@@ -57,6 +68,7 @@ public class SmiApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		Date date1 = new Date();
 		Categoria cat1 = new Categoria(null, "pereciveis");
 		Categoria cat2 = new Categoria(null, "enlatados");
 		Categoria cat3 = new Categoria(null, "panificados");
@@ -65,6 +77,8 @@ public class SmiApplication implements CommandLineRunner {
 		Produto prod2 = new Produto(null, "produto 2", "marca 2", "descrição 2", 15.99);
 		
 		Fornecedor forn1 = new Fornecedor(null, "nome 1", "cnpj 1");
+		
+		Lote lote1 = new Lote(null, date1, date1, 19.99, forn1);
 		
 		cat1.getProdutos().addAll(Arrays.asList(prod1, prod2));
 		cat2.getProdutos().addAll(Arrays.asList(prod1));
@@ -77,20 +91,12 @@ public class SmiApplication implements CommandLineRunner {
 		prod2.getFornecedores().addAll(Arrays.asList(forn1));
 		
 		forn1.getProdutos().addAll(Arrays.asList(prod1, prod2));
+		forn1.getLotes().addAll(Arrays.asList(lote1));
 		
 		catRepo.saveAll(Arrays.asList(cat1, cat2, cat3));
 		prodRepo.saveAll(Arrays.asList(prod1, prod2));
 		fornRepo.saveAll(Arrays.asList(forn1));
-		
-		Date date1 = new Date();
-		
-//		Lote lote1 = new Lote(1, date1, date1, 19.99, forn1);
-		
-//		loteRepo.save(lote1);
-		
-//		Estoque estoque1 = new Estoque(1, prod1, lote1, EstoqueStatus.EM_ESTOQUE, null);
-		
-//		estoqueRepo.save(estoque1);
+		loteRepo.saveAll(Arrays.asList(lote1));
 		
 		Usuario user1 = new Usuario(null, "renan@test.com", "1234");
 		Usuario user2 = new Usuario(null, "paulo@test.com", "2341");
@@ -106,12 +112,20 @@ public class SmiApplication implements CommandLineRunner {
 		
 		setorRepo.saveAll(Arrays.asList(setor1, setor2, setor3, setor4, setor5));
 		
+		SetorProduto setorproduto1 = new SetorProduto(null, "Produtos", 123.22, 122.11);
+		setorProdutoRepo.saveAll(Arrays.asList(setorproduto1));
+		
+		Estoque estoque1 = new Estoque(null, 1, lote1, prod1, setorproduto1);
+		//estoqueRepo.saveAll(Arrays.asList(estoque1));
+		
 		Funcionario func1 = new Funcionario(null, "Renan", "Luis Bianchini", user1, setor2);
 		Funcionario func2 = new Funcionario(null, "Manu", "Vegas", user3, setor2);
 		Funcionario func3 = new Funcionario(null, "Paulo", "Rivera", user2, setor5);
 
 		funcRepo.saveAll(Arrays.asList(func1, func2, func3));
 		
+		Holograma hol1 = new Holograma(null, "Luis", prod1, setorproduto1);
+		holRepo.saveAll(Arrays.asList(hol1));
 		
 		
 	}

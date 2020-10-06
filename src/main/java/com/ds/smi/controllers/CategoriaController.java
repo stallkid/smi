@@ -62,7 +62,7 @@ public class CategoriaController {
 	@RequestMapping(method=RequestMethod.GET)
 	public ResponseEntity<List<CategoriaResponse>> findAll() {
 		List<Categoria> list = service.findAll();
-		List<CategoriaResponse> listDto = list.stream().map(obj -> new CategoriaResponse(obj)).collect(Collectors.toList());  
+		List<CategoriaResponse> listDto = list.stream().map(obj -> new CategoriaResponse(obj)).collect(Collectors.toList());   
 		return ResponseEntity.ok().body(listDto);
 	}
 

@@ -1,5 +1,6 @@
 package com.ds.smi.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,34 +10,40 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Fornecedor {
+public class Fornecedor implements Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	private String nome;
 	private String cnpj;
 	
 	@JsonIgnore
-	@ManyToMany(mappedBy = "fornecedores", cascade = CascadeType.MERGE)
-	List<Produto> produtos = new ArrayList<>();
+	@ManyToMany(mappedBy="fornecedores")
+	private List<Produto> produtos = new ArrayList<>();
+	
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Lote> lotes = new ArrayList<>();
 
 	public Fornecedor() {
 		super();
 	}
 
-	public Fornecedor(int id, String nome, String cnpj) {
+	public Fornecedor(Integer id, String nome, String cnpj) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.cnpj = cnpj;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
@@ -66,6 +73,14 @@ public class Fornecedor {
 
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
+	}
+
+	public List<Lote> getLotes() {
+		return lotes;
+	}
+
+	public void setLotes(List<Lote> lotes) {
+		this.lotes = lotes;
 	}
 
 	@Override

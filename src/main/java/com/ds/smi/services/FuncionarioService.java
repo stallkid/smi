@@ -72,11 +72,14 @@ public class FuncionarioService {
 	public Funcionario fromDTO(FuncionarioRequest objDto) {
 		Usuario usuario = this.usuarioRepo.findUsuarioById(objDto.getUsuarioId());
 		SetorFuncionario setor = this.setorFuncRepo.findSetorFuncionarioById(objDto.getSetorId());
-		return new Funcionario(objDto.getId(), objDto.getNome(), objDto.getSobreNome(), usuario, setor);
+		return new Funcionario(null, objDto.getNome(), objDto.getSobreNome(), usuario, setor);
 	}
 	
 	private void updateData(Funcionario newObj, Funcionario obj) {
 		newObj.setNome(obj.getNome());
+		newObj.setSobrenome(obj.getSobrenome());
+		newObj.setSetor(obj.getSetor());
+		newObj.setUsuario(obj.getUsuario());
 	}
 
 }

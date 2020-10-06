@@ -1,9 +1,11 @@
 package com.ds.smi.model;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -11,27 +13,35 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 import com.ds.smi.model.enums.Perfil;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Usuario {
+public class Usuario implements Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	private String email;
+	@JsonIgnore
 	private String senha;
 	
 	@ElementCollection(fetch=FetchType.EAGER)
 	@CollectionTable(name="PERFIS")
 	private Set<Integer> perfis = new HashSet<>();
 	
+	@JsonIgnore
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
+	private Funcionario funcionario;
+	
 	public Usuario() {
 		super();
 	}
 
-	public Usuario(int id, String email, String senha) {
+	public Usuario(Integer id, String email, String senha) {
 		super();
 		this.id = id;
 		this.email = email;
@@ -39,27 +49,27 @@ public class Usuario {
 		addPerfil(Perfil.FUNCIONARIO);
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public String getemail() {
+	public String getEmail() {
 		return email;
 	}
 
-	public void setemail(String email) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	public String getsenha() {
+	public String getSenha() {
 		return senha;
 	}
 
-	public void setsenha(String senha) {
+	public void setSenha(String senha) {
 		this.senha = senha;
 	}
 	
@@ -69,6 +79,14 @@ public class Usuario {
 	
 	public void addPerfil(Perfil perfil) {
 		perfis.add(perfil.getCod());
+	}
+
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
 	}
 
 	@Override
