@@ -62,7 +62,7 @@ public class UsuarioService {
 	}
 	
 	private void updateData(Usuario newObj, Usuario obj) {
-		newObj.setEmail(obj.getSenha());
+		newObj.setEmail(obj.getEmail());
 		newObj.setSenha(obj.getSenha());
 	}
 
